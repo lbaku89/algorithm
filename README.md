@@ -1,5 +1,28 @@
 # algorithm
 
+#### 추억점수 (lv1)
+https://school.programmers.co.kr/learn/courses/30/lessons/176963
+```js
+function solution(name, yearning, photo) {
+
+    let na = name 
+    let ye = yearning
+    let ph = photo
+    
+    let ob ={}
+    na.forEach((name,i)=>{
+        ob[name]=ye[i]
+    })
+    
+    let answer = ph.map((photo)=>{
+        return photo.reduce((prev,curr)=>{
+            return ob[curr]?prev+ob[curr]:prev
+        },0)
+    })
+    
+    return answer;
+}
+```
 
 #### [PCCP 기출문제] 1번 / 붕대 감기 (lv1)
 https://school.programmers.co.kr/learn/courses/30/lessons/250137
