@@ -1,5 +1,19 @@
 # algorithm
 
+#### 콜라문제 (lv1)
+https://school.programmers.co.kr/learn/courses/30/lessons/132267
+```js
+function solution(a, b, n) {
+    let answer = 0
+    while(parseInt(n/a)>=1){
+        answer = answer + parseInt(n/a)*b     
+        n = n%a + parseInt(n/a)*b
+    }
+    return answer
+}
+```
+
+
 #### 덧칠하기 (lv1)
 https://school.programmers.co.kr/learn/courses/30/lessons/161989
 ```js
