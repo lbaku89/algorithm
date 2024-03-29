@@ -1,5 +1,30 @@
 # algorithm
 
+#### 덧칠하기 (lv1)
+https://school.programmers.co.kr/learn/courses/30/lessons/161989
+```js
+function solution(n, m, section) {
+    var answer = 0;
+    let i=0
+    let j=0
+    
+    while(i<=n){
+        if(i>section[j]){
+            ++j
+        }else if(i===section[j]){
+           i=i+m
+           ++answer
+           ++j
+           if(i>n){break;}  
+        }else{
+           ++i 
+        }  
+    }
+    return answer
+}
+```
+
+
 #### 추억점수 (lv1)
 https://school.programmers.co.kr/learn/courses/30/lessons/176963
 ```js
