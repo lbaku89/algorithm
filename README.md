@@ -1,6 +1,55 @@
 # algorithm
 
-#### 명예의 전당 (1)
+#### [카카오 인턴] 키패드 누르기
+https://school.programmers.co.kr/learn/courses/30/lessons/67256
+```js
+function solution(numbers, hand) {   
+    let l =[3,0]
+    let r =[3,2]
+    let answer = ''
+    let converted = numbers.map((s)=>{
+        if(s===0){
+            return[3,1]
+        }else{            
+            return [parseInt((s-1)/3),(s-1)%3]
+        }
+    })
+    
+    for(let i of converted){
+        if(i[1]===0){
+            answer+='L'
+            l=i
+        }else if(i[1]===2){
+            answer+='R'
+            r=i
+        }else if(i[1]===1){
+            
+           let x =Math.abs(i[0]-l[0])+Math.abs(i[1]-l[1]) // left diff
+           let y =Math.abs(i[0]-r[0])+Math.abs(i[1]-r[1]) // right diff
+           
+           if(x===y){
+               if(hand==='right'){
+                   r=i
+                   answer+='R'
+               }else{
+                   l=i
+                   answer+='L'
+               }
+           }else if(x<y){
+               l=i
+               answer+='L'
+           }else{
+               r=i
+               answer+='R'
+           }   
+        }
+    }
+
+    return answer;
+}
+```
+
+#### 명예의 전당 (1) lv1
 https://school.programmers.co.kr/learn/courses/30/lessons/138477
 ```js
 function solution(k, score) {
