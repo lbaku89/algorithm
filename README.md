@@ -1,4 +1,27 @@
 # algorithm
+
+#### 과일장수
+https://school.programmers.co.kr/learn/courses/30/lessons/135808
+```js
+function solution(k, m, score) {
+    let answer = 0;
+    if(m>score.length){
+        return 0
+    }
+        
+    let scores = score.sort((a,b)=>b-a).map((v)=>{
+        return v>k?k:v
+    })
+
+    score.forEach((v,i)=>{
+        if((i%m)===(m-1)){
+            answer+=v*m
+        }
+    })
+    return answer;
+}
+```
+
 #### 달리기 경주
 https://school.programmers.co.kr/learn/courses/30/lessons/178871
 ```js
