@@ -1,5 +1,37 @@
 # algorithm
 
+#### 대충 만든 자
+https://school.programmers.co.kr/learn/courses/30/lessons/160586
+```js
+function solution(keymap, targets) {
+    
+    let answer=[]
+    let idx ={}
+    
+    for(let keys of keymap){
+        [...keys].forEach((key,i)=>{
+            if(idx[key]===undefined||idx[key]>i+1){
+                idx[key]=i+1
+            }
+        })
+    }
+    
+    for(let target of targets){
+        let count=0
+        for(key of target){
+            if(idx[key]){
+                count+=idx[key]    
+            }else{
+                count=-1
+                break;
+            }  
+        }
+        answer.push(count)
+    }
+    return answer;
+}
+```
+
 #### 과일장수
 https://school.programmers.co.kr/learn/courses/30/lessons/135808
 ```js
