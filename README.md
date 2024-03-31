@@ -1,5 +1,28 @@
 # algorithm
-
+#### 달리기 경주
+https://school.programmers.co.kr/learn/courses/30/lessons/178871
+```js
+function solution(players, callings) {
+    
+    const a = {}
+    players.forEach((v,i)=>{
+        a[v]=i 
+    })
+    
+    callings.forEach((v,i)=>{
+       a[v]  
+       let prevPlayer = players[a[v]-1] // 새로운 랭크 
+       let newRank = a[v] -1 // v의 새로운 랭크 
+       players.splice(a[v]-1,2,v,prevPlayer)
+       a[v]=a[v]-1
+       a[prevPlayer]=a[prevPlayer]+1
+        
+    })
+    
+    return players
+    
+}
+```
 #### [카카오 인턴] 키패드 누르기
 https://school.programmers.co.kr/learn/courses/30/lessons/67256
 ```js
