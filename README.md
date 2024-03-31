@@ -1,5 +1,28 @@
 # algorithm
 
+#### 명예의 전당 (1)
+https://school.programmers.co.kr/learn/courses/30/lessons/138477
+```js
+function solution(k, score) {
+    
+    let stack = [] 
+    let answer = []
+    
+    for(let s of score){
+        if(stack.length<k){
+            stack.push(s)
+            stack.sort((a,b)=>a-b)
+            answer.push(stack[0])
+        }else{
+            stack.push(s)
+            stack.sort((a,b)=>b-a)
+            answer.push(stack[k-1])
+        }
+    }
+    return answer;
+}
+```
+
 #### 콜라문제 (lv1)
 https://school.programmers.co.kr/learn/courses/30/lessons/132267
 ```js
