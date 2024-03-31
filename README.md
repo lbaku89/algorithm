@@ -1,5 +1,30 @@
 # algorithm
 
+#### 포켓몬
+https://school.programmers.co.kr/learn/courses/30/lessons/1845
+```js
+function solution(nums) {
+
+    let answer=0
+    const max=nums.length/2
+    const pMap={}
+
+    for(mon of nums){
+        if(pMap[mon]===undefined){
+            pMap[mon]=1
+            answer+=1
+        }
+    } 
+
+    if(answer>=max){
+        return max
+    }else{
+        return answer
+    }
+}
+
+```
+
 #### 대충 만든 자판
 https://school.programmers.co.kr/learn/courses/30/lessons/160586
 ```js
