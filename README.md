@@ -1,5 +1,35 @@
 # algorithm
 
+#### 소수 만들기
+https://school.programmers.co.kr/learn/courses/30/lessons/12977
+```js
+function solution(nums) {
+    let answer = 0;
+    
+    for(let i=0; i<=nums.length-3; ++i){
+        for(let y=i+1; y<=nums.length-2; ++y){
+            for(let z=y+1; z<=nums.length-1; ++z){
+                let v = nums[i]+nums[y]+nums[z];
+                let t = 2
+                while(t<v){
+                    if(v%t===0){
+                        break;
+                    }
+                    if(t==v-1){
+                        ++answer;
+                    }
+                    ++t;
+                }        
+            }
+        }
+    }
+    return answer;   
+}
+    
+    
+  
+```
+
 #### 포켓몬
 https://school.programmers.co.kr/learn/courses/30/lessons/1845
 ```js
