@@ -1,5 +1,8 @@
 # algorithm
 
+#### 소수 찾기 (진행중)
+https://school.programmers.co.kr/learn/courses/30/lessons/12921
+
 #### 소수 만들기
 https://school.programmers.co.kr/learn/courses/30/lessons/12977
 ```js
