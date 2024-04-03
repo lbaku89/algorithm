@@ -2,7 +2,29 @@
 
 #### 소수 찾기 (진행중)
 https://school.programmers.co.kr/learn/courses/30/lessons/12921
+```js
 
+function solution(n) {
+    
+    let answer = 0;
+    
+    const arr = [false,false,...Array(n-1).fill(true)]
+    
+    for(let i=2; i<=n; ++i){
+        if(arr[i]){
+            for(let j=2; i*j<=n; ++j){
+                arr[i*j]=false
+            }
+            ++answer;
+        }
+        
+    }
+    
+
+     
+    return answer;
+}
+```
 #### 소수 만들기
 https://school.programmers.co.kr/learn/courses/30/lessons/12977
 ```js
