@@ -1,6 +1,35 @@
 # algorithm
 
-#### 소수 찾기 (진행중)
+#### 옹알이
+https://school.programmers.co.kr/learn/courses/30/lessons/133499
+```js
+function solution(babbling) {
+    let answer = 0;
+
+    for(let word of babbling){
+        const newWord = word.replaceAll('aya','1').replaceAll('ye','2').replaceAll('woo','3').replaceAll('ma','4')
+        
+    
+        for(let i=0; i<=newWord.length-1; ++i){
+            const string = newWord[i]
+            if(string!=='1'&&string!=='2'&&string!=='3'&&string!=='4'){
+                break;
+            }
+        
+            if(i!==0 && newWord[i-1]===newWord[i] ){
+               break;
+            }
+            
+            if(i===newWord.length-1){
+                ++answer
+            }   
+        }
+    }
+    return answer;
+}
+```
+
+#### 소수 찾기 
 https://school.programmers.co.kr/learn/courses/30/lessons/12921
 ```js
 
