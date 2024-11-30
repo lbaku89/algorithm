@@ -1,5 +1,52 @@
 # algorithm
 
+#### 조이스틱 (진행중)
+https://school.programmers.co.kr/learn/courses/30/lessons/42860
+...
+<br/>
+#### 체육복
+https://school.programmers.co.kr/learn/courses/30/lessons/42862
+```js
+function solution(n, lost, reserve) {
+
+    let answer = 0
+    let arr =[] 
+
+    for(let i=0; i<n; ++i){
+        let v = i+1
+        if(lost.includes(v)&&reserve.includes(v)){
+            arr[i] = 1
+        }else if(lost.includes(v)){
+            arr[i] = 0
+        }else if(reserve.includes(v)){
+            arr[i] = 2
+        }else {
+            arr[i] =1
+        }
+    }
+    
+    arr.forEach((v,i)=>{
+        if(v===1){
+            ++answer
+        }else if(v===0){
+            if(arr[i-1]===2){
+                arr[i-1]=1
+                arr[i]=1
+                ++answer
+            }else if(arr[i+1]===2){
+                arr[i+1]=1
+                arr[i]=1
+                ++answer
+            }
+        }else if(v===2){
+            ++answer
+        }
+    })
+
+    return answer;
+}
+```
+
 #### 옹알이
 https://school.programmers.co.kr/learn/courses/30/lessons/133499
 ```js
