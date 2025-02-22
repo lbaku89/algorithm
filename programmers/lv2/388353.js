@@ -1,5 +1,5 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/388353
-
+// 지게차와 크레인
 // 주의사항 > 한번에 바꾸어야 함
 
 function solution(storage, requests) {

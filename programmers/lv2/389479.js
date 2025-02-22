@@ -1,5 +1,5 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/389479
-
+// 서버증설횟수
 function solution(players, m, k) {
     let servers = Array(24).fill(0);
     let answer = 0;

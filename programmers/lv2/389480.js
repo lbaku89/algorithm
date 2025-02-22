@@ -1,5 +1,5 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/389480
-
+// 완전범죄
 function solution(info, n, m) {
     let dp = Array.from({ length: info.length + 1 }, () => {
         return Array(m).fill(Infinity);
