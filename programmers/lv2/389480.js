@@ -1,21 +1,29 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/389480
 
 function solution(info, n, m) {
-    // dps -> 시간초과
-    let aMin = Infinity;
-    const steal = (idx, aEvidence, bEvidence) => {
-        if (idx >= info.length) {
-            aMin = Math.min(aMin, aEvidence);
-            return;
+    let dp = Array.from({ length: info.length + 1 }, () => {
+        return Array(m).fill(Infinity);
+    });
+
+    dp[0][0] = 0;
+
+    for (let r = 1; r <= info.length; r++) {
+        let [aScore, bScore] = info[r - 1];
+        for (let c = 0; c < m; c++) {
+            dp[r][c] = Math.min(dp[r - 1][c] + aScore, dp[r][c]);
+
+            if (c + bScore < m) {
+                dp[r][c + bScore] = Math.min(dp[r - 1][c], dp[r][c + bScore]);
+            }
         }
-        let [sumA, sumB] = [aEvidence + info[idx][0], bEvidence + info[idx][1]];
-        if (sumA < n) {
-            steal(idx + 1, sumA, bEvidence);
+    }
+    let min = Infinity;
+
+    dp[info.length].forEach((v) => {
+        if (v < n) {
+            min = Math.min(min, v);
         }
-        if (sumB < m) {
-            steal(idx + 1, aEvidence, sumB);
-        }
-    };
-    steal(0, 0, 0);
-    return aMin === Infinity ? -1 : aMin;
+    });
+
+    return min === Infinity ? -1 : min;
 }
