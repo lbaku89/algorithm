@@ -1,4 +1,5 @@
 // https://www.acmicpc.net/problem/9375
+
 // let fs = require("fs");
 // let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
@@ -6,6 +7,7 @@ let testCase = "2\n3\nhat headgear\nsunglasses eyewear\nturban headgear\n3\nmask
 let input = testCase.toString().trim().split("\n");
 
 let answer = "";
+
 for (let i = 1; i < input.length; ) {
     let obj = {};
     let clothCount = +input[i];
@@ -20,16 +22,14 @@ for (let i = 1; i < input.length; ) {
         }
     }
 
-    console.log("obj>", obj);
     let typeArr = Object.keys(obj);
-    console.log("typeArr>", typeArr);
-    let typeCount = Object.keys(obj).length;
-    let mixArr = [];
+    // let typeCount = Object.keys(obj).length;
+    // let mixArr = [];
 
     let temp = 0;
+
     const mix = (start, restPickCnt, pickedArr) => {
         if (restPickCnt === 0) {
-            console.log("pickedArr>", pickedArr);
             let cnt = 1;
             pickedArr.forEach((type) => {
                 cnt = cnt * obj[type];
@@ -39,7 +39,7 @@ for (let i = 1; i < input.length; ) {
 
         for (let z = start; z < typeArr.length; ++z) {
             pickedArr.push(typeArr[z]);
-            mix(start + 1, restPickCnt - 1, pickedArr);
+            mix(z + 1, restPickCnt - 1, pickedArr);
             pickedArr.pop();
         }
     };
