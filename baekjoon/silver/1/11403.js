@@ -39,3 +39,29 @@ graph.forEach((line) => {
     answer += str + "\n";
 });
 console.log(answer);
+
+//  플로이드 와샬 풀이
+
+// let fs = require("fs");
+// let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+// let [pointsCnt, ...arr] = input;
+
+// let graph = arr.map((str) => {
+//     return str.split(" ").map((n) => Number(n));
+// });
+
+// for(let k=0; k<graph.length; ++k){
+// for(let r=0; r<graph.length; ++r){
+//     for(let c=0; c<graph[0].length; ++c){
+//         if(graph[r][k]&&graph[k][c]){
+//              graph[r][c]=1
+//         }
+//     }
+// }
+// }
+// let answer = "";
+// graph.forEach((line) => {
+//     let str = line.join(" ");
+//     answer += str + "\n";
+// });
+// console.log(answer);
