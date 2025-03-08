@@ -82,26 +82,15 @@ function solution(n, bans) {
         if (a.length !== b.length) {
             return a.length - b.length;
         } else {
-            return stringToIndex(a) - stringToIndex(b);
+            return a.localeCompare(b);
         }
     });
-    console.log("bans>", bans);
-    // 총 알파벳 26개
-    // 총 주문의 갯수 26^11
-    // 26
-    // 26 * 26
-    // 26 * 26 * 26
-
-    // 만약 찾는
-
-    let poppedCnt = 0;
     let bansArr = [];
     bans.forEach((str) => {
         let num = 0;
 
         let strArr = str.split("").reverse();
 
-        // console.log("strArr>", strArr);
         let digit = 0;
 
         for (let i = 0; i < strArr.length; ++i) {
@@ -113,13 +102,11 @@ function solution(n, bans) {
     });
 
     let targetN = n;
-    // console.log("bansArr>", bansArr);
     for (let i = 0; i < bansArr.length; ++i) {
         if (bansArr[i] <= targetN) {
             targetN = targetN + 1;
         }
     }
-    // console.log("targetN>", targetN);
 
     let answer = indexToString(targetN);
     return answer;
