@@ -1,5 +1,3 @@
-// https://school.programmers.co.kr/learn/courses/30/lessons/389481
-
 let dictionary = {
     a: 1,
     b: 2,
@@ -57,26 +55,37 @@ let dictionary = {
 
 const indexToString = (index) => {
     let str = "";
+    // while (index > 0) {
+    //     let remain = index % 26;
+    //     index = Math.floor(index / 26);
+    //     str = dictionary[remain] + str;
+    // }
     while (index > 0) {
-        let remain = index % 26;
-        index = Math.floor(index / 26);
-        str = dictionary[remain] + str;
+        let remain = (index - 1) % 26;
+        index = Math.floor((index - 1) / 26);
+        str = String.fromCharCode(remain + 97) + str; // 97 is the ASCII code for 'a'
     }
     return str;
 };
 const stringToIndex = (str) => {
     let num = 0;
 
-    let strArr = str.split("").reverse();
+    // let strArr = str.split("").reverse();
 
-    let digit = 0;
+    // let digit = 0;
 
-    for (let i = 0; i < strArr.length; ++i) {
-        num += 26 ** digit * dictionary[strArr[i]];
-        ++digit;
+    // for (let i = 0; i < strArr.length; ++i) {
+    //     num += 26 ** digit * dictionary[strArr[i]];
+    //     ++digit;
+    // }
+
+    for (let i = 0; i < str.length; ++i) {
+        num = num * 26 + (str.charCodeAt(i) - 96); // 96 is the ASCII code before 'a'
     }
     return num;
 };
+// az
+console.log("52>", indexToString(52));
 function solution(n, bans) {
     bans = bans.sort((a, b) => {
         if (a.length !== b.length) {
@@ -111,6 +120,3 @@ function solution(n, bans) {
     let answer = indexToString(targetN);
     return answer;
 }
-console.log(solution(30, ["d", "e", "bb", "aa", "ae"]));
-console.log(solution(7388, ["gqk", "kdn", "jxj", "jxi", "fug", "jxg", "ewq", "len", "bhc"]));
-console.log(solution(10 ** 14, ["d", "e", "bb", "aa", "ae"]));
