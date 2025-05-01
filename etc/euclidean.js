@@ -9,5 +9,5 @@ const fn = (a, b) => {
         return n;
     }
 
-    fn(b, n);
+    return fn(b, n);
 };
