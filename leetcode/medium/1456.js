@@ -42,6 +42,45 @@ var maxVowels = function (s, k) {
     return max;
 };
 
+// other solution
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {number}
+ */
+var maxVowels = function (s, k) {
+    const isVowel = (cha) => {
+        if (cha === "a" || cha === "e" || cha === "i" || cha === "o" || cha === "u") {
+            return true;
+        }
+        return false;
+    };
+
+    let cnt = s
+        .slice(0, k)
+        .split("")
+        .reduce((acc, cur) => {
+            if (isVowel(cur)) {
+                return acc + 1;
+            }
+            return acc;
+        }, 0);
+
+    let max = Math.max(0, cnt);
+    for (let i = k; i < s.length; ++i) {
+        if (isVowel(s[i])) {
+            ++cnt;
+        }
+
+        if (isVowel(s[i - k])) {
+            --cnt;
+        }
+        max = Math.max(max, cnt);
+    }
+
+    return max;
+};
+
 // test case
 console.log(maxVowels("novowels", 1));
 console.log(maxVowels("pdzndkhhoujpqyex", 5));
