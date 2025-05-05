@@ -53,6 +53,36 @@ var longestOnes = function (nums, k) {
     return max;
 };
 
+// other solution for sliding window
+// time complexity O(n)
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var longestOnes = function (nums, k) {
+    let left = 0;
+    let zeroCnt = 0;
+    let max = 0;
+    for (let right = 0; right < nums.length; ++right) {
+        if (nums[right] === 0) {
+            ++zeroCnt;
+        }
+
+        if (zeroCnt > k) {
+            while (nums[left] !== 0) {
+                ++left;
+            }
+            ++left;
+            --zeroCnt;
+        }
+
+        let cnt = right - left + 1;
+        max = Math.max(cnt, max);
+    }
+    return max;
+};
+
 // testCase
 console.log(
     longestOnes([1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1], 8)
