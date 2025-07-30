@@ -13,31 +13,35 @@ var exist = function(board, word) {
     let answer = false
     const [m,n] = [board.length,board[0].length];
 
-    const dfs =(r,c,passed,i)=>{
-        ++i
-        if(i>=word.length){
-            answer=true
-            return
+    const dfs =(r,c,i)=>{
+
+        if(r<0 || r>=m || c>=n || c<0 || board[r][c] ==='#'|| board[r][c] !== word[i]){
+            return false
+        } 
+
+        if(i === word.length-1 && board[r][c] === word[i]){
+            return true
         }
+
 
         const dr = [0,0,1,-1]
         const dc = [1,-1,0,0]
 
+        const temp = board[r][c]
+        board[r][c] = '#' // mark as visited
 
-        for(let index=0; index<4; ++index){
-            const nr = r + dr[index]
-            const nc = c + dc[index]
-            if(nr>=0 && nr<=m-1 && nc>=0 && nc<=n-1 &&
-             !passed.includes(String(nr+','+nc)) && board[nr][nc] === word[i] ){
-                dfs(nr,nc,[...passed,String(nr+','+nc)],i)
-            }
-        }
+        const found = dfs(r+dr[0],c+dc[0],i+1) || dfs(r+dr[1],c+dc[1],i+1) ||
+                      dfs(r+dr[2],c+dc[2],i+1) || dfs(r+dr[3],c+dc[3],i+1)
+
+        board[r][c] = temp 
+
+        return found
     }
 
     for(let r=0; r<board.length; ++r){
         for(let c=0; c<board[0].length; ++c){
-            if(board[r][c]===word[0]){
-                dfs(r,c,[r+','+c],0)
+            if(board[r][c]===word[0] && dfs(r,c,0)){
+                answer = true
             }
         }
     }
