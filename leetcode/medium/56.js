@@ -9,13 +9,7 @@ var merge = function(intervals) {
 
     // O(nlogn)
     intervals.sort((a,b)=>{
-        if(a[0]!==b[0]){ 
-            return a[0]-b[0]
-        }
-        if(a[1]!==b[1]){
-            return a[1]-b[1]
-        }
-        return -1
+        return a[0]-b[0]
     })
 
     let answer = []
@@ -26,10 +20,8 @@ var merge = function(intervals) {
         
         const [s,e] = intervals[i]
 
-        if(e<temp[1]){
-            
-        }else if(e>=temp[1]&&s<=temp[1]){
-            temp[1]=e
+        if(s<=temp[1]){
+            temp[1]=Math.max(e,temp[1])
         }else{
             answer.push([...temp])
             temp[0]=s
