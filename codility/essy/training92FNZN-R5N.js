@@ -12,3 +12,18 @@ function solution(A, K) {
 
   return answer;
 }
+
+/**
+ * @bestSolution 최적화
+ */
+function solution(A, K) {
+  let l = A.length;
+
+  if (l === 0) {
+    return [];
+  }
+
+  let shift = K % l;
+
+  return A.slice(-shift).concat(A.slice(0, l - k));
+}
