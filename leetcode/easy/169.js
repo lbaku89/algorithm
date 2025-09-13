@@ -22,3 +22,26 @@ var majorityElement = function (nums) {
   }
   return answer;
 };
+
+/**
+ * @note best solution - space complexity O(1)
+ */
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function (nums) {
+  let candidate = 0;
+  let cnt = 0;
+
+  for (const n of nums) {
+    if (cnt === 0) {
+      candidate = n;
+    }
+
+    cnt += candidate === n ? 1 : -1;
+  }
+
+  return candidate;
+};
