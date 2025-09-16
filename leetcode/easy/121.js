@@ -3,6 +3,25 @@
  */
 
 /**
+ * @optimize
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  if (!prices.length) {
+    return 0;
+  }
+
+  let maxProfit = 0;
+  let sofarMin = prices[0];
+  for (let i = 1; i < prices.length; ++i) {
+    maxProfit = Math.max(maxProfit, prices[i] - sofarMin);
+    sofarMin = Math.min(sofarMin, prices[i]);
+  }
+  return maxProfit;
+};
+
+/**
  * @param {number[]} prices
  * @return {number}
  */
