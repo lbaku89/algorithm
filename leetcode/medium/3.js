@@ -3,6 +3,42 @@
  */
 
 /**
+ * @연산 최적화
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+  if (!s.length) {
+    return 0;
+  }
+
+  let map = {};
+
+  let right = 0;
+  let answer = 1;
+  for (let left = 0; left < s.length; ) {
+    if (map[s[left - 1]]) {
+      --map[s[left - 1]];
+    }
+
+    right = left >= right ? left : right;
+
+    while (right < s.length) {
+      if (map[s[right]]) {
+        break;
+      }
+
+      map[s[right]] = 1;
+      answer = Math.max(right - left + 1, answer);
+      ++right;
+    }
+    ++left;
+  }
+
+  return answer;
+};
+
+/**
  * @param {string} s
  * @return {number}
  */
