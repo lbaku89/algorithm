@@ -15,12 +15,11 @@ function isMonotonic(nums: number[]): boolean {
     }
 
     if (monotoneType === undefined) {
-      monotoneType = nums[i + 1] > nums[i] ? true : false;
+      monotoneType = Math.sign(nums[i + 1] - nums[i]);
       continue;
     }
 
-    let nowType = nums[i + 1] > nums[i] ? true : false;
-    if (nowType !== monotoneType) {
+    if (Math.sign(nums[i + 1] - nums[i]) !== monotoneType) {
       return false;
     }
   }
