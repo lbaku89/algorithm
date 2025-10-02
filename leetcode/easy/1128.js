@@ -1,5 +1,22 @@
 // https://leetcode.com/problems/number-of-equivalent-domino-pairs/description/
 
+// optimize
+/**
+ * @param {number[][]} dominoes
+ * @return {number}
+ */
+var numEquivDominoPairs = function (dominoes) {
+  const map = {};
+  for (const [a, b] of dominoes) {
+    let str = [String(a), String(b)].sort().join("");
+    map[str] = (map[str] || 0) + 1;
+  }
+
+  return Object.values(map).reduce((acc, cur) => {
+    return acc + (cur * (cur - 1)) / 2;
+  }, 0);
+};
+
 // 3try
 
 /**
