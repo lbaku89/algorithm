@@ -1,6 +1,27 @@
 /**
  * @source https://leetcode.com/problems/two-sum/
  */
+
+/**
+ * @OptimizedSolution
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  const seen = new Map();
+
+  for (let i = 0; i < nums.length; ++i) {
+    const n = nums[i];
+    const diff = target - n;
+    if (seen.get(diff) !== undefined) {
+      return [seen.get(diff), i];
+      break;
+    }
+    seen.set(n, i);
+  }
+};
+
 /**
  * @param {number[]} nums
  * @param {number} target
