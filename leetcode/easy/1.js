@@ -31,3 +31,34 @@ var twoSum = function (nums, target) {
 
   return answer;
 };
+
+/**
+ * ----------not optimized solution--------------------------------------------------------------------------------
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  const map = {};
+  nums.forEach((n, idx) => {
+    if (map[n]) {
+      map[n].push(idx);
+    } else {
+      map[n] = [idx];
+    }
+  });
+
+  const answer = [];
+  for (let i = 0; i < nums.length; ++i) {
+    const rest = target - nums[i];
+    if (map[rest]) {
+      const restIdx = map[rest].find((idx) => idx !== i);
+      if (restIdx !== undefined) {
+        answer.push(i, restIdx);
+        break;
+      }
+    }
+  }
+
+  return answer;
+};
