@@ -3,6 +3,40 @@
  */
 
 /**
+ * @timeComplexity O(n)
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+  const arr = [];
+  const seen = new Map();
+
+  let [left, right] = [0, 0];
+
+  let max = 0;
+
+  while (right < s.length) {
+    const cha = s[right];
+
+    if (seen.get(cha)) {
+      while (s[left] !== cha) {
+        seen.set(s[left], false);
+        ++left;
+      }
+
+      seen.set(cha, false);
+      ++left;
+    }
+
+    seen.set(cha, true);
+    ++right;
+    max = Math.max(max, right - left);
+  }
+
+  return max;
+};
+
+/**
  * @연산 최적화
  * @param {string} s
  * @return {number}
