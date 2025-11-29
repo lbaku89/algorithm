@@ -10,6 +10,30 @@
  */
 
 var dailyTemperatures = function (temperatures) {
+  const n = temperatures.length;
+  const answer = Array(n).fill(0);
+  const stack = [];
+
+  for (let i = 0; i < n; ++i) {
+    const curTemp = temperatures[i];
+
+    while (stack.length > 0 && curTemp > temperatures[stack.at(-1)]) {
+      const pastIdx = stack.pop();
+      answer[pastIdx] = i - pastIdx;
+    }
+
+    stack.push(i);
+  }
+
+  return answer;
+};
+
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+
+var dailyTemperatures = function (temperatures) {
   const arr = Array(101).fill(false);
   const answer = Array(temperatures.length).fill(0);
 
