@@ -1,5 +1,34 @@
+// https://chatgpt.com/c/692a4ece-6a14-8324-a8e0-92204eb0f975
 // time complexity O(n)
 // space complexity O(n)
+
+/**
+ * @param {number[]} nums
+ * @return {string[]}
+ */
+var summaryRanges = function (nums) {
+  let l = 0,
+    r = 0;
+
+  const answer = [];
+
+  while (l < nums.length) {
+    l = r;
+    while (nums[r + 1] !== undefined && nums[r + 1] - nums[r] === 1) {
+      ++r;
+    }
+
+    if (l === r) {
+      answer.push(`${nums[l]}`);
+    } else {
+      answer.push(`${nums[l]}->${nums[r]}`);
+    }
+
+    ++r;
+    l = r;
+  }
+  return answer;
+};
 
 /**
  * @param {number[]} nums
