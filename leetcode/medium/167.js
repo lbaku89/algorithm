@@ -1,6 +1,34 @@
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/\
 
 // time complexity O(n)
+// space complexity O(1)
+
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (numbers, target) {
+  let leftIdx = 0,
+    rightIdx = numbers.length - 1;
+
+  while (leftIdx < rightIdx) {
+    const sum = numbers[leftIdx] + numbers[rightIdx];
+    if (sum === target) {
+      return [leftIdx + 1, rightIdx + 1];
+    }
+
+    if (sum > target) {
+      --rightIdx;
+    }
+
+    if (sum < target) {
+      ++leftIdx;
+    }
+  }
+};
+
+// time complexity O(n)
 // space complexity O(n)
 
 /**
