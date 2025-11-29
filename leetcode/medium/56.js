@@ -1,5 +1,37 @@
 /**@origin https://leetcode.com/problems/merge-intervals/ */
 
+// time complexity O(nlogn)
+// space complexity O(n)
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge = function (intervals) {
+  intervals.sort((a, b) => {
+    return a[0] - b[0];
+  });
+  const answer = [];
+
+  let l = 0,
+    r = 0;
+
+  while (l < intervals.length) {
+    let range = intervals[l];
+    let end = intervals[l][1];
+    while (intervals[r + 1] && intervals[r + 1][0] <= end) {
+      end = Math.max(end, intervals[r + 1][1]);
+      ++r;
+    }
+
+    answer.push([range[0], end]);
+
+    ++r;
+    l = r;
+  }
+
+  return answer;
+};
+
 /**
  * @timeComplexity O(nlogn)
  * @param {number[][]} intervals
