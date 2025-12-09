@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/find-maximum-area-of-a-triangle/description/
-// time complexity O(n log n)
+// time complexity O(n)
 // space complexity O(n)
 
 /**
@@ -9,16 +9,24 @@
 var maxArea = function (coords) {
   let finalAnswer = 0;
 
-  const operateMax = (parellel) => {
+  const operateMax = (parallel) => {
+    let maxPoint = -Infinity;
+    let minPoint = Infinity;
     let answer = 0;
     const arr = [];
     const axis = {};
 
     // O(n)
     for (const [x, y] of coords) {
-      parellel === "x" ? arr.push(y) : arr.push(x);
+      if (parallel === "y") {
+        maxPoint = Math.max(maxPoint, x);
+        minPoint = Math.min(minPoint, x);
+      } else {
+        maxPoint = Math.max(maxPoint, y);
+        minPoint = Math.min(minPoint, y);
+      }
 
-      if (parellel === "y") {
+      if (parallel === "y") {
         if (axis[x] === undefined) {
           axis[x] = [y, y];
         } else {
@@ -43,13 +51,10 @@ var maxArea = function (coords) {
       }
     }
 
-    // O(nlog n)
-    arr.sort((a, b) => b - a);
-
     // O(n)
     Object.entries(axis).forEach(([x, [min, max]]) => {
-      let temp = (max - min) * Math.abs(Number(x) - arr[0]);
-      temp = Math.max(temp, (max - min) * Math.abs(Number(x) - arr.at(-1)));
+      let temp = (max - min) * Math.abs(Number(x) - minPoint);
+      temp = Math.max(temp, (max - min) * Math.abs(Number(x) - maxPoint));
       answer = Math.max(temp, answer);
     });
 
