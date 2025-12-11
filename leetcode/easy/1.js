@@ -3,6 +3,45 @@
  */
 
 /**
+ * time complexity O(n)
+ * space complexity O(n)
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  const store = {};
+
+  for (let i = 0; i < nums.length; ++i) {
+    const diff = target - nums[i];
+    if (store[diff] !== undefined) {
+      return [store[diff], i];
+    }
+
+    store[n] = i;
+  }
+};
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function (nums, target) {
+  const store = {};
+
+  for (let i = 0; i < nums.length; ++i) {
+    const n = nums[i];
+
+    if (store[target - n] !== undefined) {
+      return [store[target - n], i];
+    }
+
+    store[n] = i;
+  }
+};
+
+/**
  * @OptimizedSolution
  * @param {number[]} nums
  * @param {number} target
