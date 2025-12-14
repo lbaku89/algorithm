@@ -9,6 +9,49 @@
  * @return {number[][]}
  */
 var insert = function (intervals, newInterval) {
+  if (intervals.length === 0) {
+    return [newInterval];
+  }
+
+  const answer = [];
+  let i = 0;
+
+  // newInterval 가 들어가는 타이밍 까지 answer 에 push
+  while (i < intervals.length && intervals[i][1] < newInterval[0]) {
+    answer.push(intervals[i]);
+    ++i;
+  }
+
+  // newInterval과 겹치는 부분을 최대한 연장 하여 Push
+  let [start, end] = newInterval;
+  while (
+    i < intervals.length &&
+    start <= intervals[i][1] &&
+    end >= intervals[i][0]
+  ) {
+    start = Math.min(start, intervals[i][0]);
+    end = Math.max(end, intervals[i][1]);
+    ++i;
+  }
+  answer.push([start, end]);
+
+  // 남은 범위 push
+  while (i < intervals.length) {
+    answer.push(intervals[i]);
+    ++i;
+  }
+
+  return answer;
+};
+
+// ------------------------------------------------------------
+
+/**
+ * @param {number[][]} intervals
+ * @param {number[]} newInterval
+ * @return {number[][]}
+ */
+var insert = function (intervals, newInterval) {
   if (!intervals.length) {
     return [newInterval];
   }
