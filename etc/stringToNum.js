@@ -24,8 +24,12 @@ const stringToNum = (str) => {
   const digits = str.split("");
   let isMinus = false;
   let answer = 0;
-  let dotCnt = 0;
+  let seenDot = false;
   let dotIndex = 0;
+  let fractionalPart = 0;
+  let seenAnyDigit = false;
+  let seenFractionalDigit = false;
+
   for (let i = 0; i < digits.length; i++) {
     const digit = digits[i];
 
@@ -41,8 +45,11 @@ const stringToNum = (str) => {
     }
 
     // 소수점 시작 전 처리
-    if (digit === "." && dotCnt === 0) {
-      ++dotCnt;
+    if (digit === ".") {
+      if (seenDot) {
+        return "invalid string";
+      }
+      seenDot = true;
       continue;
     }
 
@@ -51,27 +58,52 @@ const stringToNum = (str) => {
       return "invalid string";
     }
 
-    if (dotCnt > 0) {
-      --dotIndex;
-      answer += map[digit] * 10 ** dotIndex;
+    seenAnyDigit = true;
+
+    if (seenDot) {
+      seenFractionalDigit = true;
+      fractionalPart = fractionalPart * 10 + map[digit];
+      ++dotIndex;
+
       continue;
     }
 
     answer = answer * 10 + map[digit];
   }
+  if (!seenAnyDigit) {
+    return "invalid string";
+  }
+
+  if (seenDot && !seenFractionalDigit) {
+    return "invalid string";
+  }
+
+  if (seenDot) {
+    answer = answer + fractionalPart / 10 ** dotIndex;
+  }
 
   return isMinus ? -1 * answer : answer;
 };
 
+// TC (정수 케이스)
 console.log(stringToNum("10"));
 console.log(stringToNum("-10"));
 console.log(stringToNum("--10"));
 console.log(stringToNum("1010"));
 console.log(stringToNum("0010"));
 
-// 소수점 처리
+// TC (소수점 케이스)
 console.log(stringToNum("10.1010"));
 console.log(stringToNum("0.1010"));
 console.log(stringToNum("10-.1010"));
 console.log(stringToNum(".1010"));
 console.log(stringToNum("0.10.10"));
+
+// TC (예외 케이스)
+console.log(stringToNum(""));
+console.log(stringToNum("a"));
+console.log(stringToNum("-"));
+console.log(stringToNum("."));
+console.log(stringToNum(".0.9"));
+console.log(stringToNum("1."));
+console.log(stringToNum("-0.a"));
