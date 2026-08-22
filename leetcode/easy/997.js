@@ -1,4 +1,8 @@
 /**
+ * @source https://leetcode.com/problems/find-the-town-judge/description/
+ */
+
+/**
  * @param {number} n
  * @param {number[][]} trust
  * @return {number}
