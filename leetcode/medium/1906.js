@@ -1,4 +1,7 @@
 /**
+ * @source https://leetcode.com/problems/minimum-absolute-difference-queries/description/
+ */
+/**
  * @param {number[]} nums
  * @param {number[][]} queries
  * @return {number[]}
