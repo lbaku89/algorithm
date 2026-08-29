@@ -3,6 +3,32 @@
  */
 
 /**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function (nums, target) {
+  let left = 0,
+    right = nums.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    let midValue = nums[mid];
+
+    if (midValue === target) {
+      return mid;
+    }
+
+    if (midValue < target) {
+      left = mid + 1;
+    } else if (midValue > target) {
+      right = mid - 1;
+    }
+  }
+  return -1;
+};
+
+/**
  * optimization
  * @param {number[]} nums
  * @param {number} target
