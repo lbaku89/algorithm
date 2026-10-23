@@ -7,6 +7,30 @@
  * @return {boolean}
  */
 var canConstruct = function (ransomNote, magazine) {
+  const arr = new Array(26).fill(0);
+
+  for (const cha of ransomNote) {
+    --arr[cha.charCodeAt(0) - "a".charCodeAt(0)];
+  }
+
+  for (const cha of magazine) {
+    ++arr[cha.charCodeAt(0) - "a".charCodeAt(0)];
+  }
+
+  for (const n of arr) {
+    if (n < 0) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function (ransomNote, magazine) {
   const magazineArr = Array(26).fill(0); // 공간 복잡도 +26
   const aIdx = "a".charCodeAt(0); // 공간 복잡도 +1
 
